@@ -63,13 +63,14 @@ db.on('error', (error) => {
     console.error('Error connecting to MongoDB Atlas:', error);
     process.exit(1); // Exit process with error
 });
-
+app.get('/', (req, res) => {
+    res.send('Server is running successfully!');
+});
 // Route to fetch products
 app.get('/api/products', async (req, res) => {
     try {
         // Fetch all products from the database
         const products = await Products.find();
-        console.log(products)
         res.json(products);
     } catch (error) {
         console.error('Error fetching products:', error);
